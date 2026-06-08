@@ -1,0 +1,62 @@
+/* Pretendard (OFL, 동적 서브셋 웹폰트 CDN) */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/variable/pretendardvariable-dynamic-subset.css");
+@import "tailwindcss";
+
+@theme {
+  /* ── Font ─────────────────────────────────────────── */
+  --font-pretendard: "Pretendard Variable", "Pretendard", -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --font-sans: var(--font-pretendard);
+
+  /* ── Colors (임시 추정치 — 추후 미세 조정 예정) ────────── */
+  --color-brand-blue: #2b6cb0; /* 포인트 파랑, 섹션 라벨 */
+  --color-navy: #1a1b4b; /* 히어로 배경 진한 남색 */
+  --color-teal: #1e4d4a; /* CTA 배너 청록색 */
+  --color-foreground: #1a1a1a; /* 본문 */
+  --color-text-muted: #6b7280; /* 보조 텍스트 */
+  --color-sky-bg: #eaf2fb; /* 연한 하늘색 푸터 배경 */
+
+  /* ── Layout ───────────────────────────────────────── */
+  --container-content: 1480px; /* 콘텐츠 컨테이너 최대 너비 */
+
+  /* ── Transitions ──────────────────────────────────── */
+  --default-transition-duration: 450ms;
+  --default-transition-timing-function: ease-in-out;
+}
+
+/* 콘텐츠 컨테이너: 최대 1280px, 가운데 정렬, 좌우 여백 */
+@utility container-content {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--container-content);
+  padding-inline: 1.5rem;
+}
+
+:root {
+  --background: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--color-foreground);
+  font-family: var(--font-pretendard);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 커스텀 커서 활성 시 기본 커서 숨김 (입력 영역은 텍스트 캐럿 유지) */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+.custom-cursor-active input,
+.custom-cursor-active textarea,
+.custom-cursor-active select,
+.custom-cursor-active [contenteditable="true"] {
+  cursor: auto !important;
+}
