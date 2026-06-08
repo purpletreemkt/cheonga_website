@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import SectionLabel from "@/components/home/SectionLabel";
+
+const SLIDE_MS = 3000; // 자동 슬라이드 간격
 
 type ServiceCard = {
   no: string;
@@ -39,8 +41,16 @@ const CARDS: ServiceCard[] = [
 ];
 
 export default function ServiceSection() {
-  // 기본값 0 → 아무것도 hover 안 했을 때 01번 카드가 펼쳐진 상태
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(0); // 기본 01 펼침
+  const [reduced, setReduced] = useState(false); // 동작 줄이기
+
+  useEffect(() => {
+    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+
+  // 자동 슬라이드 진행은 활성 프로그레스 바의 CSS 애니메이션 종료(onAnimationEnd)로 구동
+  // → 별도 타이머 없이 막대 채워짐과 자동 동기화 (cleanup 불필요)
+  const advance = () => setActive((a) => (a + 1) % CARDS.length);
 
   return (
     <section className="flex min-h-screen flex-col justify-center rounded-t-[36px] bg-white shadow-[0_-8px_28px_-8px_rgba(0,0,0,0.18)]">
@@ -125,6 +135,39 @@ export default function ServiceSection() {
               </div>
             );
           })}
+        </div>
+
+        {/* 프로그레스 바 인디케이터 (인스타 스토리 스타일) */}
+        <div className="mt-8 flex w-full gap-2">
+          {CARDS.map((card, i) => (
+            <button
+              key={card.no}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-label={`${card.title} 보기`}
+              className="h-1 flex-1 overflow-hidden rounded-full bg-gray-200"
+            >
+              <span
+                key={`${i}-${active}`}
+                onAnimationEnd={
+                  i === active && !reduced ? advance : undefined
+                }
+                className="bg-brand-blue block h-full rounded-full"
+                style={
+                  i < active
+                    ? { width: "100%" }
+                    : i === active
+                      ? reduced
+                        ? { width: "100%" }
+                        : {
+                            width: "0%",
+                            animation: `service-bar-fill ${SLIDE_MS}ms linear forwards`,
+                          }
+                      : { width: "0%" }
+                }
+              />
+            </button>
+          ))}
         </div>
       </div>
     </section>

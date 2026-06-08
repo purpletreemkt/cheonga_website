@@ -69,3 +69,13 @@ body {
 .custom-cursor-active [contenteditable="true"] {
   cursor: auto;
 }
+
+/* Service 섹션 프로그레스 바 채워짐 */
+@keyframes service-bar-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
