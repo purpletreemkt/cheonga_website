@@ -77,16 +77,16 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* 방사형 글로우 (가장 아래 레이어, 본체를 가리지 않게 뒤에) */}
+      {/* 방사형 글로우 (가장 아래 레이어, 본체를 가리지 않게 뒤에)
+          blend mode 없이 brand-blue 계열 → 밝은/어두운 배경 모두에서 보이게 */}
       <div
         ref={glowRef}
         aria-hidden
-        className="pointer-events-none fixed top-0 left-0 z-[9998] h-[300px] w-[300px] rounded-full"
+        className="pointer-events-none fixed top-0 left-0 z-[9998] h-[260px] w-[260px] rounded-full"
         style={{
           background:
-            "radial-gradient(circle, rgba(80,150,250,0.40) 0%, rgba(80,150,250,0) 70%)",
-          filter: "blur(28px)",
-          mixBlendMode: "screen",
+            "radial-gradient(circle, rgba(26,129,233,0.38) 0%, rgba(26,129,233,0.16) 35%, rgba(26,129,233,0) 70%)",
+          filter: "blur(26px)",
         }}
       />
 
