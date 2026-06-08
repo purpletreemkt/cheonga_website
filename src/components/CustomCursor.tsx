@@ -2,14 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type Variant = "default" | "hover" | "text";
+const INTERACTIVE_SELECTOR =
+  "a, button, [role='button'], label, input, textarea, select, summary";
 
 export default function CustomCursor() {
   const glowRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
-  const [variant, setVariant] = useState<Variant>("default");
+  const [active, setActive] = useState(false); // 클릭 가능 요소 위 강조 상태
 
   useEffect(() => {
     // 마우스(정밀 포인터)가 있는 기기에서만 활성화 — 터치 기기는 기본 동작 유지
@@ -38,7 +39,6 @@ export default function CustomCursor() {
       mouseX = e.clientX;
       mouseY = e.clientY;
       place(dotRef.current, mouseX, mouseY);
-      // 동작 줄이기: 트레일 없이 즉시 따라옴
       if (reduced) {
         place(ringRef.current, mouseX, mouseY);
         place(glowRef.current, mouseX, mouseY);
@@ -47,8 +47,8 @@ export default function CustomCursor() {
 
     const tick = () => {
       // 큰 원은 lerp로 부드럽게, 글로우는 더 느리게 따라옴
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
+      ringX += (mouseX - ringX) * 0.2;
+      ringY += (mouseY - ringY) * 0.2;
       glowX += (mouseX - glowX) * 0.1;
       glowY += (mouseY - glowY) * 0.1;
       place(ringRef.current, ringX, ringY);
@@ -59,14 +59,7 @@ export default function CustomCursor() {
 
     const onOver = (e: MouseEvent) => {
       const t = e.target as Element | null;
-      if (!t) return;
-      if (t.closest("input, textarea, select, [contenteditable='true']")) {
-        setVariant("text");
-      } else if (t.closest("a, button, [role='button'], label")) {
-        setVariant("hover");
-      } else {
-        setVariant("default");
-      }
+      setActive(!!t && !!t.closest(INTERACTIVE_SELECTOR));
     };
 
     window.addEventListener("mousemove", onMove);
@@ -82,39 +75,40 @@ export default function CustomCursor() {
 
   if (!enabled) return null;
 
-  const hidden = variant === "text";
-
   return (
     <>
-      {/* 방사형 글로우 (가장 아래 레이어) */}
+      {/* 방사형 글로우 (가장 아래 레이어, 본체를 가리지 않게 뒤에) */}
       <div
         ref={glowRef}
         aria-hidden
-        className={`pointer-events-none fixed top-0 left-0 z-[9998] h-[340px] w-[340px] rounded-full transition-opacity duration-300 ${
-          hidden ? "opacity-0" : "opacity-100"
-        }`}
+        className="pointer-events-none fixed top-0 left-0 z-[9998] h-[300px] w-[300px] rounded-full"
         style={{
           background:
-            "radial-gradient(circle, rgba(80,130,235,0.45) 0%, rgba(124,92,236,0.22) 38%, rgba(43,108,176,0) 70%)",
-          filter: "blur(24px)",
+            "radial-gradient(circle, rgba(80,150,250,0.40) 0%, rgba(80,150,250,0) 70%)",
+          filter: "blur(28px)",
           mixBlendMode: "screen",
         }}
       />
-      {/* 중심 점 */}
-      <div
-        ref={dotRef}
-        aria-hidden
-        className={`bg-brand-blue pointer-events-none fixed top-0 left-0 z-[9999] h-1.5 w-1.5 rounded-full transition-opacity duration-200 ${
-          hidden ? "opacity-0" : "opacity-100"
-        }`}
-      />
-      {/* 따라오는 큰 원 */}
+
+      {/* 따라오는 큰 원 (클릭 가능 시 커지고 또렷해짐) — blend 없이 선명 */}
       <div
         ref={ringRef}
         aria-hidden
-        className={`border-brand-blue/50 pointer-events-none fixed top-0 left-0 z-[9999] rounded-full border transition-[width,height,background-color,opacity] duration-300 ease-out ${
-          hidden ? "opacity-0" : "opacity-100"
-        } ${variant === "hover" ? "bg-brand-blue/10 h-12 w-12" : "h-8 w-8"}`}
+        className={`pointer-events-none fixed top-0 left-0 z-[9999] rounded-full border-2 transition-[width,height,background-color,border-color] duration-300 ease-out ${
+          active
+            ? "h-14 w-14 border-[#1A81E9] bg-[#1A81E9]/20"
+            : "h-9 w-9 border-[#1A81E9]/80"
+        }`}
+        style={{ boxShadow: "0 0 0 1px rgba(255,255,255,0.35)" }}
+      />
+
+      {/* 중심 점 (듀얼톤: 파란 코어 + 흰 외곽선 → 밝은/어두운 배경 모두 선명) */}
+      <div
+        ref={dotRef}
+        aria-hidden
+        className={`pointer-events-none fixed top-0 left-0 z-[9999] rounded-full bg-[#1A81E9] ring-2 ring-white/90 transition-[width,height] duration-200 ${
+          active ? "h-2 w-2" : "h-2.5 w-2.5"
+        }`}
       />
     </>
   );

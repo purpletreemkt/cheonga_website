@@ -49,14 +49,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 커스텀 커서 활성 시 기본 커서 숨김 (입력 영역은 텍스트 캐럿 유지) */
+/* 커스텀 커서 활성 시: 일반 영역만 기본 커서 숨김 */
 .custom-cursor-active,
 .custom-cursor-active * {
-  cursor: none !important;
+  cursor: none;
 }
+/* 클릭 가능한 요소에서는 시스템 포인터를 함께 표시 → 클릭 지점이 명확 */
+.custom-cursor-active a,
+.custom-cursor-active button,
+.custom-cursor-active [role="button"],
+.custom-cursor-active label,
+.custom-cursor-active select,
+.custom-cursor-active summary {
+  cursor: pointer;
+}
+/* 입력 영역은 텍스트 캐럿 유지 */
 .custom-cursor-active input,
 .custom-cursor-active textarea,
-.custom-cursor-active select,
 .custom-cursor-active [contenteditable="true"] {
-  cursor: auto !important;
+  cursor: auto;
 }

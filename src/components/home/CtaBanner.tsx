@@ -23,9 +23,6 @@ export default function CtaBanner() {
               궁금하신 사항이 있으신가요?
             </h2>
             <p className="mt-4 text-white/85">
-              {/* TODO: 첫 줄 실제 문구로 교체 */}
-              CTA 설명 첫 줄 placeholder
-              <br />
               솔루션 정보, 견적 또는 여러 궁금한 사항이 있다면 언제든지
               문의해주세요
             </p>
