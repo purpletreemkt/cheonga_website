@@ -45,7 +45,7 @@ export default function Header() {
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
       {/* 플로팅 바 */}
       <div
-        className={`mx-auto flex h-14 max-w-[1480px] items-center justify-between rounded-2xl px-4 shadow-lg ring-1 ring-white/10 transition-all duration-300 sm:px-6 ${
+        className={`mx-auto flex h-16 max-w-[1480px] items-center justify-between rounded-2xl px-4 shadow-lg ring-1 ring-white/10 transition-all duration-300 sm:px-6 ${
           scrolled ? "bg-navy/90 backdrop-blur-md" : "bg-navy/60 backdrop-blur"
         }`}
       >
@@ -56,7 +56,7 @@ export default function Header() {
             width={2508}
             height={627}
             priority
-            className="h-8 w-auto"
+            className="h-12 w-auto"
           />
         </Link>
 
