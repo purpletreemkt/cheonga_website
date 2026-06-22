@@ -19,7 +19,7 @@ const ITEMS: QualityItem[] = [
     no: "01",
     title: "입고 품질검증",
     desc: "원료 및 부자재의 규격과 품질 적합성을 검증하여 생산 품질의 기준을 확보합니다.",
-    image: "/image/품질관리1.png",
+    image: "/image/quality-1.png",
   },
   {
     no: "02",
