@@ -5,8 +5,17 @@ import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
-  title: "청아무역",
-  description: "청아무역 회사 홈페이지",
+  title: "(주)청아 SP&T | 수산 전문 OEM·ODM",
+  description: "(주)청아 SP&T - 수산 전문 OEM·ODM 위탁가공 플랫폼",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-48.png", type: "image/png", sizes: "48x48" },
+    ],
+    apple: [{ url: "/favicon-180.png", sizes: "180x180" }],
+  },
 };
 
 export default function RootLayout({
