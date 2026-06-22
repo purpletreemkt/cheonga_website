@@ -10,11 +10,11 @@ export default function Footer() {
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <Link href="/" aria-label="청아씨푸드 홈" className="flex items-center">
             <Image
-              src="/image/footer_logo.png"
-              alt="청아씨푸드"
-              width={138}
-              height={25}
-              className="h-6 w-auto"
+              src="/image/logo-color.png"
+              alt="청아 SP&T"
+              width={2508}
+              height={627}
+              className="h-7 w-auto"
             />
           </Link>
 

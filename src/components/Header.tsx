@@ -51,10 +51,10 @@ export default function Header() {
       >
         <Link href="/" aria-label="청아씨푸드 홈" className="flex items-center">
           <Image
-            src="/image/logo_main.png"
-            alt="청아씨푸드"
-            width={138}
-            height={25}
+            src="/image/logo-white.png"
+            alt="청아 SP&T"
+            width={2508}
+            height={627}
             priority
             className="h-6 w-auto"
           />
