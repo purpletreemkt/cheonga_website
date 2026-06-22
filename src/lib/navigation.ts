@@ -6,7 +6,7 @@ export type NavItem = {
 };
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "회사소개", href: "/about" },
+  { label: "대표인사말", href: "/about" },
   { label: "품질관리", href: "/quality" },
   { label: "스마트 생산관리 시스템", href: "/services" },
   {
@@ -21,7 +21,7 @@ export const NAV_ITEMS: NavItem[] = [
 
 /** 푸터 전용 메뉴 (헤더 메뉴와 구성이 다름) */
 export const FOOTER_MENU: NavItem[] = [
-  { label: "회사소개", href: "/about" },
+  { label: "대표인사말", href: "/about" },
   { label: "스마트 데이터 수산물 가공 시스템", href: "/services" },
   { label: "문의/상담하기", href: "/contact" },
 ];

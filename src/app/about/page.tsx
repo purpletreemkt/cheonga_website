@@ -4,14 +4,14 @@ import SubHero from "@/components/SubHero";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "회사소개 | 청아무역",
+  title: "대표인사말 | 청아무역",
 };
 
 export default function AboutPage() {
   return (
     <>
       {/* 1. 서브 히어로 */}
-      <SubHero title="회사소개" bgImage="/image/회사소개.jpg" />
+      <SubHero title="대표인사말" bgImage="/image/회사소개.jpg" />
 
       <section className="container-content py-20 md:py-28">
         {/* 2. 인사말 제목 (중앙 정렬) */}
