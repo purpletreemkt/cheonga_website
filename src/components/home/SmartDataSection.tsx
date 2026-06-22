@@ -9,7 +9,7 @@ type Step = { no: string; title: string; details: Detail[] };
 
 // 단계별 우측 이미지 (01~05)
 const STEP_IMAGES = [
-  "/image/smart1.jpg",
+  "/image/smart1.png",
   "/image/smart2.png",
   "/image/smart3.png",
   "/image/smart4.png",

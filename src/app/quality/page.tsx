@@ -19,19 +19,19 @@ const ITEMS: QualityItem[] = [
     no: "01",
     title: "입고 품질검증",
     desc: "원료 및 부자재의 규격과 품질 적합성을 검증하여 생산 품질의 기준을 확보합니다.",
-    image: "/image/품질관리1.jpg",
+    image: "/image/품질관리1.png",
   },
   {
     no: "02",
     title: "공정 품질검사",
     desc: "생산 공정의 품질 데이터를 지속적으로 점검하고 정기적인 미생물 검사를 통해 제품의 안전성과 품질 안정성을 확보합니다.",
-    image: "/image/품질관리2.jpg",
+    image: "/image/품질관리2.png",
   },
   {
     no: "03",
     title: "완제품 검사 및 이력관리",
     desc: "출하 전 최종 품질검사와 생산·검사 이력 관리를 통해 제품의 신뢰성과 추적성을 제공합니다.",
-    image: "/image/품질관리3.jpg",
+    image: "/image/품질관리3.png",
   },
 ];
 
