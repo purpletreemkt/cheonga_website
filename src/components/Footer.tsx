@@ -14,7 +14,7 @@ export default function Footer() {
               alt="청아 SP&T"
               width={2508}
               height={627}
-              className="h-7 w-auto"
+              className="h-12 w-auto"
             />
           </Link>
 
